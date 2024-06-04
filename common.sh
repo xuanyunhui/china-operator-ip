@@ -13,8 +13,7 @@ get_asn(){
 	unset EXCLUDE
 	source $CONF_FILE
 	EXCLUDE=${EXCLUDE:-"^$"}
-	grep -P "${COUNTRY}\$" asnames.txt |
-	grep -Pi "$PATTERN" |
+	grep -Pv "${COUNTRY}\$" asnames.txt |
 	grep -vPi "$EXCLUDE" |
 	awk '{gsub(/AS/, ""); print $1 }'
 }
